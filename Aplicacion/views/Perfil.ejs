@@ -1,1 +1,128 @@
+<!DOCTYPE html>
+<html>
 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Recetas</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/botones.css">
+    <link rel="stylesheet" href="assets/css/estrellas.css">
+    <link rel="stylesheet" href="assets/css/Footer-Clean.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="assets/css/multiRange.css">
+    <link rel="stylesheet" href="assets/css/Navigation-with-Search.css">
+    <link rel="stylesheet" href="assets/css/Registration-Form-with-Photo.css">
+</head>
+
+<body style="height: 714px;padding-bottom: 0px;padding-top: 98px;">
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top" id="mainNav" style="background: rgba(140,198,62,255);">
+        <div class="container"><a class="navbar-brand" href="index.html">FOODRATE</a>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto" style="margin: -111px;margin-right: 32px;width: 837.078px;">
+                    <li class="nav-item"><a class="nav-link" href="recetasUsuario.html" style="font-size: 17.4px;">BUSCADOR DE RECETAS</a></li>
+                    <li class="nav-item" style="margin-right: 237px;"><a class="nav-link" href="/misGustos" style="font-size: 17.4px;">MIS GUSTOS</a></li>
+                    <li class="nav-item" style="padding-right: 0px;"><span style="margin: 17px;font-weight: bold;"><%= user %></span><img class="rounded-circle" style="width: 50px;height: 50px;background: url(&quot;assets/img/avatarDefecto.jpg&quot;);"></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container" style="margin-top: 82px;width: 1040px;margin-bottom: 0px;">
+        <div class="row" style="width: 1307px;">
+            <div class="col-md-3 col-xxl-2 align-self-center"><label class="col-form-label" style="font-weight: bold;font-size: 21px;margin-left: 6px;">Energía</label></div>
+            <div class="col-md-3 col-xxl-2 align-self-center" style="width: 158px;"><label class="col-form-label" style="font-weight: bold;font-size: 21px;margin-left: 14px;"><%= Math.round(calorias)%> kcal</label></div>
+            <div class="col-md-3 col-xxl-5 align-self-center">
+                <div class="progress d-table" style="width: 515px;">
+                    <div class="progress-bar" aria-valuenow="<%= (calorias/2000)*100%>" aria-valuemin="0" aria-valuemax="100" style="width: <%= (calorias/2000)*100%>%;"><%= Math.round((calorias/2000)*100)%>%</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-xxl-2"><label class="col-form-label" style="font-weight: bold;font-size: 21px;margin-left: 6px;">2000 kcal</label></div>
+        </div>
+        <div class="row" style="width: 1307px;">
+            <div class="col-md-3 col-xxl-2 align-self-center"><label class="col-form-label" style="font-weight: bold;font-size: 21px;margin-left: 6px;">Carbohidratos</label></div>
+            <div class="col-md-3 col-xxl-2 align-self-center" style="width: 158px;"><label class="col-form-label" style="font-weight: bold;font-size: 21px;margin-left: 14px;"><%= Math.round(carbohidratos)%> g</label></div>
+            <div class="col-md-3 col-xxl-5 align-self-center">
+                <div class="progress d-table" style="width: 515px;">
+                    <div class="progress-bar" aria-valuenow="<%= (carbohidratos/135)*100%>" aria-valuemin="0" aria-valuemax="100" style="width: <%= (carbohidratos/135)*100%>%;"><%= Math.round((carbohidratos/135)*100)%>%</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-xxl-2"><label class="col-form-label" style="font-weight: bold;font-size: 21px;margin-left: 6px;">135 g</label></div>
+        </div>
+        <div class="row" style="width: 1307px;">
+            <div class="col-md-3 col-xxl-2 align-self-center"><label class="col-form-label" style="font-weight: bold;font-size: 21px;margin-left: 6px;">Proteína</label></div>
+            <div class="col-md-3 col-xxl-2 align-self-center" style="width: 158px;"><label class="col-form-label" style="font-weight: bold;font-size: 21px;margin-left: 14px;"><%= Math.round(proteinas)%> g</label></div>
+            <div class="col-md-3 col-xxl-5 align-self-center">
+                <div class="progress d-table" style="width: 515px;">
+                    <div class="progress-bar" aria-valuenow="<%= (proteinas/60)*100%>" aria-valuemin="0" aria-valuemax="100" style="width: <%= (proteinas/60)*100%>%;"><%= Math.round((proteinas/60)*100)%>%</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-xxl-2"><label class="col-form-label" style="font-weight: bold;font-size: 21px;margin-left: 6px;">60 g</label></div>
+        </div>
+        <div class="row" style="width: 1307px;">
+            <div class="col-md-3 col-xxl-2 align-self-center"><label class="col-form-label" style="font-weight: bold;font-size: 21px;margin-left: 4px;">Lípido total (grasa)</label></div>
+            <div class="col-md-3 col-xxl-2 align-self-center" style="width: 158px;"><label class="col-form-label" style="font-weight: bold;font-size: 21px;margin-left: 14px;"><%= Math.round(grasas)%> g</label></div>
+            <div class="col-md-3 col-xxl-5 align-self-center">
+                <div class="progress d-table" style="width: 515px;">
+                    <div class="progress-bar" aria-valuenow="<%= (grasas/70)*100%>" aria-valuemin="0" aria-valuemax="100" style="width: <%= (grasas/70)*100%>%;"><%= Math.round((grasas/70)*100)%>%</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-xxl-2"><label class="col-form-label" style="font-weight: bold;font-size: 21px;margin-left: 6px;">70 g</label></div>
+        </div>
+        <div class="row" style="width: 1307px;">
+            <div class="col-md-3 col-xxl-2 align-self-center"><label class="col-form-label" style="font-weight: bold;font-size: 21px;margin-left: 6px;">Fibra</label></div>
+            <div class="col-md-3 col-xxl-2 align-self-center" style="width: 158px;"><label class="col-form-label" style="font-weight: bold;font-size: 21px;margin-left: 14px;"><%=  Math.round(fibra)%> g</label></div>
+            <div class="col-md-3 col-xxl-5 align-self-center">
+                <div class="progress d-table" style="width: 515px;">
+                    <div class="progress-bar" aria-valuenow="<%= (fibra/30)*100%>" aria-valuemin="0" aria-valuemax="100" style="width: <%= (fibra/30)*100%>%;"><%= Math.round((fibra/30)*100)%>%</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-xxl-2"><label class="col-form-label" style="font-weight: bold;font-size: 21px;margin-left: 6px;">30 g</label></div>
+        </div>
+        <div class="row" style="width: 1307px;">
+            <div class="col-md-3 col-xxl-2 align-self-center"><label class="col-form-label" style="font-weight: bold;font-size: 21px;margin-left: 6px;">Azúcares, total</label></div>
+            <div class="col-md-3 col-xxl-2 align-self-center" style="width: 158px;"><label class="col-form-label" style="font-weight: bold;font-size: 21px;margin-left: 14px;"><%=  Math.round(azucares)%> g</label></div>
+            <div class="col-md-3 col-xxl-5 align-self-center">
+                <div class="progress d-table" style="width: 515px;">
+                    <div class="progress-bar" aria-valuenow="<%= (azucares/25)*100%>" aria-valuemin="0" aria-valuemax="100" style="width: <%= (azucares/25)*100%>%;"><%= Math.round((azucares/25)*100)%>%</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-xxl-2"><label class="col-form-label" style="font-weight: bold;font-size: 21px;margin-left: 6px;">25 g</label></div>
+        </div>
+        <div class="row" style="width: 1307px;">
+            <div class="col-md-3 col-xxl-2 align-self-center"><label class="col-form-label" style="font-weight: bold;font-size: 21px;margin-left: 6px;">Colesterol</label></div>
+            <div class="col-md-3 col-xxl-2 align-self-center" style="width: 158px;"><label class="col-form-label" style="font-weight: bold;font-size: 21px;margin-left: 14px;"><%=  Math.round(colesterol)%> mg</label></div>
+            <div class="col-md-3 col-xxl-5 align-self-center">
+                <div class="progress d-table" style="width: 515px;">
+                    <div class="progress-bar" aria-valuenow="<%= (colesterol/300)*100%>" aria-valuemin="0" aria-valuemax="100" style="width: <%= (colesterol/300)*100%>%;"><%= Math.round((colesterol/300)*100)%>%</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-xxl-2"><label class="col-form-label" style="font-weight: bold;font-size: 21px;margin-left: 6px;">300 mg</label></div>
+        </div>
+    </div>
+    <footer class="text-center footer-clean" style="background: rgba(140,198,62,255);margin-top: 256px;height: 182px;padding-bottom: 139px;padding-top: 17px;">
+        <div class="container">
+            <div class="row justify-content-center" style="width: 1189px;">
+                <div class="col-lg-3 item social"><a href="#" style="margin-right: 65px;"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="50" fill="currentColor" class="bi bi-github" viewBox="0 0 16 23">
+  <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+</svg></a>
+                    <p class="copyright" style="color: rgb(14,1,1);font-size: 17px;width: 252px;margin-left: 52px;">cdiezg07@estudiantes.unileon.es</p>
+                    <p class="copyright" style="color: rgb(14,1,1);font-size: 14px;width: 243px;">FOODRATE © 2021</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script src="assets/js/creative.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="assets/js/recetasUsuario.js"></script>
+</body>
+
+</html>

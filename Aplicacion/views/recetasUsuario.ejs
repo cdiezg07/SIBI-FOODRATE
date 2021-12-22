@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Recetas</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/estrellas.css">
+    <link rel="stylesheet" href="assets/css/Footer-Clean.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="assets/css/Navigation-with-Search.css">
+    <link rel="stylesheet" href="assets/css/Registration-Form-with-Photo.css">
+    <link rel="stylesheet" href="assets/css/untitled.css">
+    <link rel="stylesheet" href="assets/css/multiRange.css">
+    <link rel="stylesheet" href="assets/css/botones.css">
+</head>
+
+<body onload="expander()">
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top" id="mainNav" style="background: rgba(140,198,62,255);height: 60px;">
+        <div class="container"><a class="navbar-brand" href="index.html">FOODRATE</a><button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-align-justify"></i></button>
+          <div id="navbarResponsive" class="collapse navbar-collapse" style="width: 770.5899999999998px;">
+              <ul class="navbar-nav ms-auto" style="margin-right: 0px;width: 380.938px;">
+                  <li class="nav-item"><a class="nav-link" href="/misGustos" style="font-size: 17.4px;">MIS GUSTOS</a></li>
+                  <li class="nav-item"><span style="margin: 17px;font-weight: bold;"><%= user %></span><a class="nav-link d-inline" href="perfil" style="margin-left: -24px;"><img class="rounded-circle" style="width: 50px;height: 50px;background: url('../assets/img/avatarDefecto.jpg');" /></a></li>
+              </ul>
+          </div>
+        </div>
+    </nav>
+    <div class="container" style="height: 439px;width: 1587px;margin-left: 287px;margin-top: 4%;margin-bottom: 120px;">
+        <div class="row" style="width: 1155px;">
+            <div class="col" style="width: 527px;">
+                <div style="margin-top: 2px;"><label class="form-label" style="width: 9.406199999999997rem;">Tiempo (min):</label><select id="tiempo" style="padding-right: 0px;padding-left: 11px;width: 121px;margin-right: 4px;margin-left: 9px;transform: perspective(0px);box-shadow: 0px 0px 7px 2px var(--bs-teal);">
+                        <option value="cualquiera" selected>cualquiera</option>
+                        <option value="=">igual a</option>
+                        <option value="&gt;=">mayor e igual que</option>
+                        <option value="&lt;=">menor e igual que</option>
+                        <option value="&gt;">mayor que</option>
+                        <option value="&lt;">menor que</option>
+                    </select><input type="text" id="tiempoTexto" name="tiempo" style="width: 137px;height: 24px;margin-left: 5px;" /></div>
+                <div><label class="form-label" style="margin-right: 25px;margin-left: 3px;">Dificultad: </label><select id="dificultad" style="padding-left: 5px;margin-left: 27px;">
+                        <option value="cualquiera" selected>cualquiera</option>
+                        <option value="Alta">Alta</option>
+                        <option value="Media">Media</option>
+                        <option value="Baja">Baja</option>
+                    </select></div>
+                <div style="margin-top: 14px;"><label class="form-label" style="margin-left: 60px;margin-top: -13px;color: var(--bs-red);font-size: 26px;font-weight: bold;">INFORMACION NUTRICIONAL</label>
+                    <div class="col-xxl-9" style="padding: 0px;margin-left: 61px;margin-top: -14px;width: 470px;height: 77px;"><label class="form-label float-start" style="margin-left: -54px;margin-right: 0px;margin-bottom: 0px;margin-top: -14px;">Calorías: </label>
+                        <div slider id="slider-distance">
+                            <div>
+                              <div inverse-left style="width:100%;"></div>
+                              <div inverse-right style="width:100%;"></div>
+                              <div range style="left:0%;right:0%;"></div>
+                              <span thumb style="left:0%;"></span>
+                              <span thumb style="left:100%;"></span>
+                              <div sign style="left:0%;">
+                                <span id="value">0</span>
+                              </div>
+                              <div sign style="left:100%;">
+                                <span id="value">900</span>
+                              </div>
+                            </div>
+                            <input id="minCalorias" type="range" tabindex="0" value="0" max="900" min="0" step="1" oninput="
+                            this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
+                            var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+                            var children = this.parentNode.childNodes[1].childNodes;
+                            children[1].style.width=value+'%';
+                            children[5].style.left=value+'%';
+                            children[7].style.left=value+'%';children[11].style.left=value+'%';
+                            children[11].childNodes[1].innerHTML=this.value;" />
+                          
+                            <input id="maxCalorias" type="range" tabindex="0" value="900" max="900" min="0" step="1" oninput="
+                            this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
+                            var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+                            var children = this.parentNode.childNodes[1].childNodes;
+                            children[3].style.width=(100-value)+'%';
+                            children[5].style.right=(100-value)+'%';
+                            children[9].style.left=value+'%';children[13].style.left=value+'%';
+                            children[13].childNodes[1].innerHTML=this.value;" />
+                          </div>
+                    </div>
+                    <div class="col-xxl-9" style="padding: 0px;margin-left: 61px;margin-top: -65px;width: 470px;height: 77px;"><label class="form-label float-start" style="margin-left: -70px;margin-right: 0px;margin-bottom: 0px;margin-top: -14px;">Carbohidratos: </label>
+                        <div slider id="slider-distance">
+                            <div>
+                              <div inverse-left style="width:100%;"></div>
+                              <div inverse-right style="width:100%;"></div>
+                              <div range style="left:0%;right:0%;"></div>
+                              <span thumb style="left:0%;"></span>
+                              <span thumb style="left:100%;"></span>
+                              <div sign style="left:0%;">
+                                <span id="value">0</span>
+                              </div>
+                              <div sign style="left:100%;">
+                                <span id="value">100</span>
+                              </div>
+                            </div>
+                            <input id="minCarbohidratos" type="range" tabindex="0" value="0" max="100" min="0" step="1" oninput="
+                            this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
+                            var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+                            var children = this.parentNode.childNodes[1].childNodes;
+                            children[1].style.width=value+'%';
+                            children[5].style.left=value+'%';
+                            children[7].style.left=value+'%';children[11].style.left=value+'%';
+                            children[11].childNodes[1].innerHTML=this.value;" />
+                          
+                            <input id="maxCarbohidratos" type="range" tabindex="0" value="100" max="100" min="0" step="1" oninput="
+                            this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
+                            var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+                            var children = this.parentNode.childNodes[1].childNodes;
+                            children[3].style.width=(100-value)+'%';
+                            children[5].style.right=(100-value)+'%';
+                            children[9].style.left=value+'%';children[13].style.left=value+'%';
+                            children[13].childNodes[1].innerHTML=this.value;" />
+                          </div>
+                    </div>
+                    <div class="col-xxl-9" style="padding: 0px;margin-left: 61px;margin-top: -65px;width: 470px;height: 77px;"><label class="form-label float-start" style="margin-left: -70px;margin-right: 0px;margin-bottom: 0px;margin-top: -14px;">Proteinas: </label>
+                        <div slider id="slider-distance">
+                            <div>
+                              <div inverse-left style="width:100%;"></div>
+                              <div inverse-right style="width:100%;"></div>
+                              <div range style="left:0%;right:0%;"></div>
+                              <span thumb style="left:0%;"></span>
+                              <span thumb style="left:100%;"></span>
+                              <div sign style="left:0%;">
+                                <span id="value">0</span>
+                              </div>
+                              <div sign style="left:100%;">
+                                <span id="value">67</span>
+                              </div>
+                            </div>
+                            <input id="minProteinas" type="range" tabindex="0" value="0" max="67" min="0" step="1" oninput="
+                            this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
+                            var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+                            var children = this.parentNode.childNodes[1].childNodes;
+                            children[1].style.width=value+'%';
+                            children[5].style.left=value+'%';
+                            children[7].style.left=value+'%';children[11].style.left=value+'%';
+                            children[11].childNodes[1].innerHTML=this.value;" />
+                          
+                            <input id="maxProteinas" type="range" tabindex="0" value="67" max="67" min="0" step="1" oninput="
+                            this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
+                            var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+                            var children = this.parentNode.childNodes[1].childNodes;
+                            children[3].style.width=(100-value)+'%';
+                            children[5].style.right=(100-value)+'%';
+                            children[9].style.left=value+'%';children[13].style.left=value+'%';
+                            children[13].childNodes[1].innerHTML=this.value;" />
+                          </div>
+                    </div>
+                    <div class="col-xxl-9" style="padding: 0px;margin-left: 61px;margin-top: -65px;width: 470px;height: 77px;"><label class="form-label float-start" style="margin-left: -70px;margin-right: 0px;margin-bottom: 0px;margin-top: -14px;">Grasas: </label>
+                        <div slider id="slider-distance">
+                            <div>
+                              <div inverse-left style="width:100%;"></div>
+                              <div inverse-right style="width:100%;"></div>
+                              <div range style="left:0%;right:0%;"></div>
+                              <span thumb style="left:0%;"></span>
+                              <span thumb style="left:100%;"></span>
+                              <div sign style="left:0%;">
+                                <span id="value">0</span>
+                              </div>
+                              <div sign style="left:100%;">
+                                <span id="value">100</span>
+                              </div>
+                            </div>
+                            <input id="minGrasas" type="range" tabindex="0" value="0" max="100" min="0" step="1" oninput="
+                            this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
+                            var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+                            var children = this.parentNode.childNodes[1].childNodes;
+                            children[1].style.width=value+'%';
+                            children[5].style.left=value+'%';
+                            children[7].style.left=value+'%';children[11].style.left=value+'%';
+                            children[11].childNodes[1].innerHTML=this.value;" />
+                          
+                            <input id="maxGrasas" type="range" tabindex="0" value="100" max="100" min="0" step="1" oninput="
+                            this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
+                            var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+                            var children = this.parentNode.childNodes[1].childNodes;
+                            children[3].style.width=(100-value)+'%';
+                            children[5].style.right=(100-value)+'%';
+                            children[9].style.left=value+'%';children[13].style.left=value+'%';
+                            children[13].childNodes[1].innerHTML=this.value;" />
+                          </div>
+                    </div>
+                    <div class="col-xxl-9" style="padding: 0px;margin-left: 61px;margin-top: -65px;width: 470px;height: 77px;"><label class="form-label float-start" style="margin-left: -70px;margin-right: 0px;margin-bottom: 0px;margin-top: -14px;">Fibra: </label>
+                        <div slider id="slider-distance">
+                            <div>
+                              <div inverse-left style="width:100%;"></div>
+                              <div inverse-right style="width:100%;"></div>
+                              <div range style="left:0%;right:0%;"></div>
+                              <span thumb style="left:0%;"></span>
+                              <span thumb style="left:100%;"></span>
+                              <div sign style="left:0%;">
+                                <span id="value">0</span>
+                              </div>
+                              <div sign style="left:100%;">
+                                <span id="value">30</span>
+                              </div>
+                            </div>
+                            <input id="minFibra" type="range" tabindex="0" value="0" max="30" min="0" step="1" oninput="
+                            this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
+                            var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+                            var children = this.parentNode.childNodes[1].childNodes;
+                            children[1].style.width=value+'%';
+                            children[5].style.left=value+'%';
+                            children[7].style.left=value+'%';children[11].style.left=value+'%';
+                            children[11].childNodes[1].innerHTML=this.value;" />
+                          
+                            <input id="maxFibra" type="range" tabindex="0" value="30" max="30" min="0" step="1" oninput="
+                            this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
+                            var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+                            var children = this.parentNode.childNodes[1].childNodes;
+                            children[3].style.width=(100-value)+'%';
+                            children[5].style.right=(100-value)+'%';
+                            children[9].style.left=value+'%';children[13].style.left=value+'%';
+                            children[13].childNodes[1].innerHTML=this.value;" />
+                          </div>
+                    </div>
+                    <div class="col-xxl-9" style="padding: 0px;margin-left: 61px;margin-top: -65px;width: 470px;height: 77px;"><label class="form-label float-start" style="margin-left: -70px;margin-right: 0px;margin-bottom: 0px;margin-top: -14px;">Azúcares: </label>
+                        <div slider id="slider-distance">
+                            <div>
+                              <div inverse-left style="width:100%;"></div>
+                              <div inverse-right style="width:100%;"></div>
+                              <div range style="left:0%;right:0%;"></div>
+                              <span thumb style="left:0%;"></span>
+                              <span thumb style="left:100%;"></span>
+                              <div sign style="left:0%;">
+                                <span id="value">0</span>
+                              </div>
+                              <div sign style="left:100%;">
+                                <span id="value">100</span>
+                              </div>
+                            </div>
+                            <input id="minAzucares" type="range" tabindex="0" value="0" max="100" min="0" step="1" oninput="
+                            this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
+                            var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+                            var children = this.parentNode.childNodes[1].childNodes;
+                            children[1].style.width=value+'%';
+                            children[5].style.left=value+'%';
+                            children[7].style.left=value+'%';children[11].style.left=value+'%';
+                            children[11].childNodes[1].innerHTML=this.value;" />
+                          
+                            <input id="maxAzucares" type="range" tabindex="0" value="100" max="100" min="0" step="1" oninput="
+                            this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
+                            var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+                            var children = this.parentNode.childNodes[1].childNodes;
+                            children[3].style.width=(100-value)+'%';
+                            children[5].style.right=(100-value)+'%';
+                            children[9].style.left=value+'%';children[13].style.left=value+'%';
+                            children[13].childNodes[1].innerHTML=this.value;" />
+                          </div>
+                    </div>
+                    <div class="col-xxl-9" style="padding: 0px;margin-left: 61px;margin-top: -65px;width: 470px;height: 77px;"><label class="form-label float-start" style="margin-left: -70px;margin-right: 0px;margin-bottom: 0px;margin-top: -14px;">Colesterol: </label>
+                        <div slider id="slider-distance">
+                            <div>
+                              <div inverse-left style="width:100%;"></div>
+                              <div inverse-right style="width:100%;"></div>
+                              <div range style="left:0%;right:0%;"></div>
+                              <span thumb style="left:0%;"></span>
+                              <span thumb style="left:100%;"></span>
+                              <div sign style="left:0%;">
+                                <span id="value">0</span>
+                              </div>
+                              <div sign style="left:100%;">
+                                <span id="value">390</span>
+                              </div>
+                            </div>
+                            <input id="minColesterol" type="range" tabindex="0" value="0" max="390" min="0" step="1" oninput="
+                            this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
+                            var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+                            var children = this.parentNode.childNodes[1].childNodes;
+                            children[1].style.width=value+'%';
+                            children[5].style.left=value+'%';
+                            children[7].style.left=value+'%';children[11].style.left=value+'%';
+                            children[11].childNodes[1].innerHTML=this.value;" />
+                          
+                            <input id="maxColesterol" type="range" tabindex="0" value="390" max="390" min="0" step="1" oninput="
+                            this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
+                            var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+                            var children = this.parentNode.childNodes[1].childNodes;
+                            children[3].style.width=(100-value)+'%';
+                            children[5].style.right=(100-value)+'%';
+                            children[9].style.left=value+'%';children[13].style.left=value+'%';
+                            children[13].childNodes[1].innerHTML=this.value;" />
+                          </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col" style="width: 584px;">
+              <div style="width: 540px;margin-top: 50px;"><label class="form-label" style="margin-left: 47px;">Busqueda(ingrediente, nombre, etc)</label><input id="busqueda" type="search" style="height: 24px;margin-left: 57px;" /><button id="botonBuscar" class="btn btn-primary" type="button" style="margin-left: 13px;margin-top: -7px;background: rgba(140,198,62,255);" onclick="buscar()">BUSCAR</button></div>
+              <div class="d-table" style="padding-top: 53px;"><span style="color: rgb(33, 37, 41);font-weight: bold;font-size: 29px;padding-left: 96px;transform: perspective(0px);">RECOMENDADORES</span>
+                  <div style="padding-top: 15px;"><button id="botonColaborativo" class="btn btn-primary d-inline" type="button" style="margin-right: 11px;background: rgba(140,198,62,255);" onclick="colaborativo()">COLABORATIVO</button><button id="botonContenido" class="btn btn-primary d-inline-flex" type="button" style="margin-right: 11px;background: rgba(140,198,62,255);" onclick="contenido()">Basado En contenido</button><button id="botonHibrido" class="btn btn-primary" type="button" style="background: rgba(140,198,62,255);" onclick="hibrido()">HIBRIDO</button></div>
+              </div>
+          </div>
+        </div>
+    </div>
+    <div class="container" style="margin-bottom: 25px;">
+        <% records.forEach(function(record, i) { %>
+            <% if(i%4===0){ %>
+        <div class="row">
+
+            <% } %>
+            <div class="col-xxl-5" style="width: 305px;">
+              <div style="width: 280px;"><img src="<%= record.get('foto') %>" width="280px" height="180px" style="margin-left: 6px;"></div>
+              <div class="d-grid" style="margin-top: 6%;margin-left: 2%;width: 280px;text-align: center;height: 95px;"><a class="d-grid align-items-center align-content-center" href="<%= record.get('link') %>" style="font-size: 1.3rem;color: var(--bs-gray-900);font-weight: bold;text-decoration: none;height: 95px;margin-top: 0px;margin-left: 2%;width: 267px;"><strong><%= record.get("name") %></strong><br /></a></div>
+              <div style="margin-left: 2%;width: 280px;"><label class="form-label">Dificultad:&nbsp;</label><span><%= record.get("dificultad") %></span></div>
+              <div style="margin-left: 2%;width: 280px;"><label class="form-label">Tiempo:&nbsp;</label><span style="margin-right: 6px;"><%= record.get("tiempo") %></span><span>min</span></div>
+              <% var find = false %>
+              <% dieta.records.forEach(record1 => {%>
+                  <% if(record.get("name") == record1.get("name")){ %>
+                    <% find = true %>  
+                  <% } %>
+              <% }); %>
+              <% if(find == true){ %>
+                <div style="margin-left: 2%;width: 280px;"><label class="form-label">Comida diaria: </label><input id="checkbox&<%= record.get("name") %>" class="justify-content-center align-items-baseline align-content-center" type="checkbox" checked style="width: 19px;height: 19px;margin-left: 2px;" onclick="change(this.id)" /></div>
+                <% find = true %>  
+              <% } else {%>
+                <div style="margin-left: 2%;width: 280px;"><label class="form-label">Comida diaria: </label><input id="checkbox&<%= record.get("name") %>" class="justify-content-center align-items-baseline align-content-center" type="checkbox" style="width: 19px;height: 19px;margin-left: 2px;" onclick="change(this.id)" /></div>
+              <% } %>
+              <div class="rating rating2" style="width: 105px;height: 38px;margin-top: 0px;margin-bottom: 0px;margin-left: 2%;">
+                <div class="rating rating2">
+                    <% for(var j=5; j>0; j--) { %>
+                        <% if (j <= parseInt(record.get("star"))) {%>
+                            <a href="rating?name=<%= record.get("name") %>&star=<%= j %>" title="Give <%= j %> star" style="color:orange">★</a>
+                        <%   } else {%>
+                            <a href="rating?name=<%= record.get("name") %>&star=<%= j %>" title="Give <%= j %> star">★</a>
+                        <%   } %>
+                    <% } %>
+                </div>
+            </div>
+              <div class="collapsible" style="margin-left: 2%;padding-right: 0px;padding-left: 96px;margin-bottom: 2px;width: 280px;"><span style="margin-right: 30px;font-size: 20px;padding-right: -31px;margin-left: -3px;">Ver más</span><span class="d-grid triangulo-equilatero-bottom"></span></div><div class="content">
+                  <label class="form-label" style="margin-left: 15px;margin-top: 0px;color: var(--bs-red);font-size: 15px;font-weight: bold;">INFORMACION NUTRICIONAL</label>
+                  <div style="margin-left: 2%;"><label class="form-label">Calorias: </label><span><%= record.get("calorias") %></span><span>   kcal</span></div>
+                  <div style="margin-left: 2%;"><label class="form-label">Carbohidratos: </label><span><%= record.get("carbohidratos") %></span><span>   g</span></div>
+                  <div style="margin-left: 2%;"><label class="form-label">Proteínas: </label><span><%= record.get("proteina") %></span><span>   g</span></div>
+                  <div style="margin-left: 2%;"><label class="form-label">Grasas: </label><span><%= record.get("grasa") %></span><span>   g</span></div>
+                  <div style="margin-left: 2%;"><label class="form-label">Fibra: </label><span><%= record.get("fibra") %></span><span>   g</span></div>
+                  <div style="margin-left: 2%;"><label class="form-label">Azúcares: </label><span><%= record.get("azucares") %></span><span>   g</span></div>
+                  <div style="margin-left: 2%;"><label class="form-label">Colesterol: </label><span><%= record.get("colesterol") %></span><span>   mg</span></div>
+                  <label class="form-label" style="margin-left: 15px;margin-top: 0px;color: var(--bs-red);font-size: 15px;font-weight: bold;">INGREDIENTES</label>
+                  <% (record.get("ingredientes")).forEach(function(ingrediente) { %> 
+                      <div style="margin-left: 2%;"><label class="form-label"><%= ingrediente %></label></div>
+                  <% }); %>
+              </div>
+          </div>  
+        <% if(i%4===3){ %>
+                
+            </div>
+
+        <% } %>
+
+    
+        <% }); %>
+    </div> 
+    
+    </div>
+
+    <footer class="text-center footer-clean" style="background: rgba(140,198,62,255);margin-top: 0px;height: 182px;padding-bottom: 139px;padding-top: 17px;">
+      <div class="container">
+          <div class="row justify-content-center" style="width: 1189px;">
+              <div class="col-lg-3 item social"><a href="#" style="margin-right: 53px;"><svg class="bi bi-github" width="25" height="50" viewBox="0 0 16 23">
+                          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+                      </svg></a>
+                  <p class="copyright" style="color: rgb(14,1,1);font-size: 17px;width: 252px;margin-left: 67px;">cdiezg07@estudiantes.unileon.es</p>
+                  <p class="copyright" style="color: rgb(14,1,1);font-size: 14px;width: 138px;margin-left: 113px;">FOODRATE © 2021</p>
+              </div>
+          </div>
+      </div>
+  </footer>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script src="assets/js/creative.js"></script>
+    <script src="../assets/js/recetasUsuario.js"></script>
+</body>
+
+</html>
