@@ -1,0 +1,20 @@
+.btn-primary:hover, .btn-primary:active {
+  background-color: #55e711 !important;
+}
+
+.navbar-brand:hover, .navbar-brand:active, #mainNav.navbar-shrink {
+  color: #020115 !important;
+}
+
+.text-primary {
+  color: rgba(140,198,62,255) !important;
+}
+
+hr {
+  border-color: rgba(140,198,62,255);
+}
+
+.masRecetas {
+  cursor: pointer;
+}
+
